@@ -8,7 +8,7 @@ try {
     await mongoClient.connect();
     console.log('conectado ao banco de dados')
 }catch(err) {
-    res.status(500).send(err.message)
+    console.log(`não conectou ${err.message}`)
 }
 
 const db = mongoClient.db("mywallet");

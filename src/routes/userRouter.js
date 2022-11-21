@@ -1,9 +1,10 @@
 import { Router } from "express";
 import { getMovements, postMoviments } from "../controllers/userController.js"
+import { authToken } from "../middlewares/authToken.js";
 
-const authRouter = Router()
+const userRouter = Router()
 
-authRouter.get("/transactions", getMovements)
-authRouter.post("/transactions", postMoviments)
+userRouter.get("/transactions", authToken, getMovements)
+userRouter.post("/transactions",authToken, postMoviments)
 
-export default authRouter
+export default userRouter
