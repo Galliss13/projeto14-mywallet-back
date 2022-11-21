@@ -9,7 +9,6 @@ try {
     console.log('conectado ao banco de dados')
 }catch(err) {
     res.status(500).send(err.message)
-    return
 }
 
 const db = mongoClient.db("mywallet");

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getMovements, postMoviments } from "../controllers/userController"
+import { getMovements, postMoviments } from "../controllers/userController.js"
 
 const authRouter = Router()
 
