@@ -11,12 +11,16 @@ export async function register(req, res) {
   }
 
   try {
-    await db.collection('users').findOne({email: user.email})
-    res.status(409).send('email já cadastrado')
-    return
+    const userAlreadyExists = await db.collection('users').findOne({email: user.email})
+    if (userAlreadyExists) {
+      res.status(409).send('email já cadastrado')
+      return
+    }
   } catch (err) {
     res.sendStatus(500)
   }
+
+  delete user.repeatPassword
 
   const passwordHash = bcrypt.hashSync(user.password, 10);
   await db.collection('users').insertOne({ ...user, password: passwordHash })

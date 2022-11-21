@@ -7,16 +7,16 @@ export async function getMovements(req, res) {
     } catch (err) {
         res.status(500).send(err.message)
     }
-
-    res.status(200).send(transactions)
 }
 
 export async function postMoviments(req, res) {
+    console.log(req.user)
     try {
         await db.collection("transactions").insertOne({
             user: req.user.email,
             transactions: req.body
         })
+        res.sendStatus(201)
     } catch(err) {
         res.sendStatus(500)
     }
